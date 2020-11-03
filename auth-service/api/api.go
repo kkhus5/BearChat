@@ -24,13 +24,12 @@ const (
 
 // RegisterRoutes initializes the api endpoints and maps the requests to specific functions
 func RegisterRoutes(router *mux.Router) error {
-	router.HandleFunc("/api/auth/signup", signup).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-	router.HandleFunc("/api/auth/signin", signin).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-	router.HandleFunc("/api/auth/logout", logout).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-	router.HandleFunc("/api/auth/verify", verify).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-	router.HandleFunc("/api/auth/sendreset", sendReset).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-	router.HandleFunc("/api/auth/resetpw", resetPassword).Methods(/*YOUR CODE HERE*/, http.MethodOptions)
-
+	router.HandleFunc("/api/auth/signup", signup).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/auth/signin", signin).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/auth/logout", logout).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/auth/verify", verify).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/auth/sendreset", sendReset).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/auth/resetpw", resetPassword).Methods(http.MethodPost, http.MethodOptions)
 	// Load sendgrid credentials
 	err := godotenv.Load()
 	if err != nil {
@@ -54,11 +53,13 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 	//Obtain the credentials from the request body
 	// YOUR CODE HERE
-
+	username := r.URL.Query().Get("username")
+	email := r.URL.Query().Get("email")
+	password := r.URL.Query().Get("password")
 
 	//Check if the username already exists
 	var exists bool
-	err = DB.QueryRow("YOUR CODE HERE", /*YOUR CODE HERE*/).Scan(/*YOUR CODE HERE*/)
+	err := DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE username = ?);", username).Scan(&exists)
 	
 	//Check for error
 	if err != nil {
@@ -67,7 +68,6 @@ func signup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	//Check boolean returned from query
 	if exists == true {
 		http.Error(w, errors.New("this username is taken").Error(), http.StatusConflict)
@@ -75,35 +75,60 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Check if the email already exists
-	err = DB.QueryRow("YOUR CODE HERE", /*YOUR CODE HERE*/).Scan(&exists)
+	err = DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE email = ?);", email).Scan(&exists)
 	
 	//Check for error
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("error checking if email exists").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	//Check boolean returned from query
 	// YOUR CODE HERE
-	
+	if exists == true {
+		http.Error(w, errors.New("this email is taken").Error(), http.StatusConflict)
+		return
+	}
 
 	//Hash the password using bcrypt and store the hashed password in a variable
 	// YOUR CODE HERE
+	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 
 	//Check for errors during hashing process
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("error encrypting password").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
+	err = bcrypt.CompareHashAndPassword(hashed, []byte(password))
+	if err != nil {
+		http.Error(w, errors.New("hashed password does not match original").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	//Create a new user UUID, convert it to string, and store it within a variable
 	// YOUR CODE HERE
-	
+	newUUID := uuid.New().String()
 
 	//Create new verification token with the default token size (look at GetRandomBase62 and our constants)
 	// YOUR CODE HERE
+	newToken := GetRandomBase62(verifyTokenSize)
 
 	//Store credentials in database
-	_, err = DB.Query("YOUR CODE HERE", /*YOUR CODE HERE*/, /*YOUR CODE HERE*/, /*YOUR CODE HERE*/, /*YOUR CODE HERE*/, /*YOUR CODE HERE*/)
+	_, err = DB.Query("INSERT INTO users (username, email, hashedPassword, verifiedToken, userId) VALUES (?, ?, ?, ?, ?);", username, email, hashed, newToken, newUUID)
 	
 	//Check for errors in storing the credentials
 	// YOUR CODE HERE
-
+	if err != nil {
+		http.Error(w, errors.New("issue storing credentials").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	//Generate an access token, expiry dates are in Unix time
 	accessExpiresAt := /*YOUR CODE HERE*/
@@ -187,7 +212,7 @@ func signin(w http.ResponseWriter, r *http.Request) {
 	//Store the credentials in a instance of Credentials
 	// "YOUR CODE HERE"
 
-	//Check for errors in storing credntials
+	//Check for errors in storing credentials
 	// "YOUR CODE HERE"
 
 	//Get the hashedPassword and userId of the user
