@@ -131,27 +131,32 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Generate an access token, expiry dates are in Unix time
-	accessExpiresAt := /*YOUR CODE HERE*/
+	accessExpiresAt := time.Now().Add(DefaultAccessJWTExpiry)
 	var accessToken string
 	accessToken, err = setClaims(AuthClaims{
-		UserID: "YOUR CODE HERE",
+		UserID: newUUID,
 		StandardClaims: jwt.StandardClaims{
 			Subject:   "access",
-			ExpiresAt: /*YOUR CODE HERE*/,
+			ExpiresAt: accessExpiresAt.Unix(),
 			Issuer:    defaultJWTIssuer,
-			IssuedAt:  /*YOUR CODE HERE*/,
+			IssuedAt:  time.Now().Unix(),
 		},
 	})
 	
 	//Check for error in generating an access token
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("error generating access token").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 
 	//Set the cookie, name it "access_token"
 	http.SetCookie(w, &http.Cookie{
-		Name:    "YOUR CODE HERE",
-		Value:   /*YOUR CODE HERE*/,
-		Expires: /*YOUR CODE HERE*/,
+		Name:    "access_token",
+		Value:   accessToken,
+		Expires: accessExpiresAt,
 		// Leave these next three values commented for now
 		// Secure: true,
 		// HttpOnly: true,
@@ -163,12 +168,12 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	var refreshExpiresAt = time.Now().Add(DefaultRefreshJWTExpiry)
 	var refreshToken string
 	refreshToken, err = setClaims(AuthClaims{
-		UserID: userID,
+		UserID: newUUID,
 		StandardClaims: jwt.StandardClaims{
 			Subject:   "refresh",
-			ExpiresAt: /*YOUR CODE HERE*/,
+			ExpiresAt: refreshExpiresAt.Unix(),
 			Issuer:    defaultJWTIssuer,
-			IssuedAt:  /*YOUR CODE HERE*/,
+			IssuedAt:  time.Now().Unix(),
 		},
 	})
 
@@ -180,22 +185,21 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 	//set the refresh token ("refresh_token") as a cookie
 	http.SetCookie(w, &http.Cookie{
-		Name:    "YOUR CODE HERE",
-		Value:   /*YOUR CODE HERE*/,
-		Expires: /*YOUR CODE HERE*/,
+		Name:    "refresh_token",
+		Value:   refreshToken,
+		Expires: refreshExpiresAt,
 		Path: "/",
 	})
 
 	// Send verification email
-	err = SendEmail(credentials.Email, "Email Verification", "user-signup.html", map[string]interface{}{"Token": verificationToken})
+	err = SendEmail(email, "Email Verification", "user-signup.html", map[string]interface{}{"Token": newToken})
 	if err != nil {
 		http.Error(w, errors.New("error sending verification email").Error(), http.StatusInternalServerError)
 		log.Print(err.Error())
 		return
 	}
 
-
-	w.WriteHeader("YOUR CODE HERE")
+	w.WriteHeader(http.StatusCreated)
 	return
 }
 
