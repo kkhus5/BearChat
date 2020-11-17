@@ -24,7 +24,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed45fc0e-ee69-4947-a281-6f40c2c95e21" name="Default Changelist" comment="" />
+    <list default="true" id="ed45fc0e-ee69-4947-a281-6f40c2c95e21" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/api/credentials.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/credentials.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/api/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/database.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db-server/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/db-server/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +66,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager">
+    <configuration name="db-server/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="db-server/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.db-server/Dockerfile" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
