@@ -53,13 +53,22 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 	//Obtain the credentials from the request body
 	// YOUR CODE HERE
-	username := r.URL.Query().Get("username")
-	email := r.URL.Query().Get("email")
-	password := r.URL.Query().Get("password")
+	//username := r.URL.Query().Get("username")
+	//email := r.URL.Query().Get("email")
+	//password := r.URL.Query().Get("password")
+	credentials := Credentials{}
+	err := json.NewDecoder(r.Body).Decode(&credentials)
+
+	//Check for errors in storing credentials
+	if err != nil {
+		http.Error(w, errors.New("issue storing credentials").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	//Check if the username already exists
 	var exists bool
-	err := DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE username = ?);", username).Scan(&exists)
+	err = DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE username = ?);", credentials.Username).Scan(&exists)
 	
 	//Check for error
 	if err != nil {
@@ -75,7 +84,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Check if the email already exists
-	err = DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE email = ?);", email).Scan(&exists)
+	err = DB.QueryRow("SELECT EXISTS(SELECT * FROM users WHERE email = ?);", credentials.Email).Scan(&exists)
 	
 	//Check for error
 	// YOUR CODE HERE
@@ -94,7 +103,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 	//Hash the password using bcrypt and store the hashed password in a variable
 	// YOUR CODE HERE
-	hashed, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+	hashed, err := bcrypt.GenerateFromPassword([]byte(credentials.Password), bcrypt.DefaultCost)
 
 	//Check for errors during hashing process
 	// YOUR CODE HERE
@@ -104,7 +113,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = bcrypt.CompareHashAndPassword(hashed, []byte(password))
+	err = bcrypt.CompareHashAndPassword(hashed, []byte(credentials.Password))
 	if err != nil {
 		http.Error(w, errors.New("hashed password does not match original").Error(), http.StatusConflict)
 		log.Print(err.Error())
@@ -120,7 +129,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	newToken := GetRandomBase62(verifyTokenSize)
 
 	//Store credentials in database
-	_, err = DB.Query("INSERT INTO users (username, email, hashedPassword, verifiedToken, userId) VALUES (?, ?, ?, ?, ?);", username, email, hashed, newToken, newUUID)
+	_, err = DB.Query("INSERT INTO users (username, email, hashedPassword, verifiedToken, userId) VALUES (?, ?, ?, ?, ?);", credentials.Username, credentials.Email, hashed, newToken, newUUID)
 	
 	//Check for errors in storing the credentials
 	// YOUR CODE HERE
@@ -192,7 +201,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 	})
 
 	// Send verification email
-	err = SendEmail(email, "Email Verification", "user-signup.html", map[string]interface{}{"Token": newToken})
+	err = SendEmail(credentials.Email, "Email Verification", "user-signup.html", map[string]interface{}{"Token": newToken})
 	if err != nil {
 		http.Error(w, errors.New("error sending verification email").Error(), http.StatusInternalServerError)
 		log.Print(err.Error())
@@ -354,7 +363,7 @@ func verify(w http.ResponseWriter, r *http.Request) {
 	rows, err := DB.Exec("UPDATE users SET verified = ? WHERE verifiedToken = ?;", 1, token)
 
 	if rows == nil {
-		http.Error(w, errors.New("invalid token").Error(), http.StatusNotFound)
+		http.Error(w, errors.New("invalid token").Error(), http.StatusBadRequest)
 		log.Print(err.Error())
 		return
 	}
