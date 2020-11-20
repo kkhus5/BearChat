@@ -31,7 +31,7 @@ func InitDB() *sql.DB {
 	dbName := "/auth"
 	// "YOUR CODE HERE"
 	// sql.Open("mysql", "theUser:thePassword@/theDbName")
-	DB, err := sql.Open(dbType, username + ":" + password + "@" + ipAddress + dbName)
+	DB, err = sql.Open(dbType, username + ":" + password + "@" + ipAddress + dbName)
 
 	if err != nil {
 		panic(err)
