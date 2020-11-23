@@ -22,7 +22,7 @@ func InitDB() *sql.DB {
 
 	_, err = DB.Query("SELECT * FROM posts")
 	for err != nil {
-		log.Println("couldnt connect, waiting 20 seconds before retrying")
+		log.Println("couldn't connect, waiting 20 seconds before retrying")
 		time.Sleep(20*time.Second)
 		DB, err = sql.Open("mysql", "root:root@tcp(172.28.1.2:3306)/postsDB?parseTime=true")
 	}
