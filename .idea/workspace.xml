@@ -25,21 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed45fc0e-ee69-4947-a281-6f40c2c95e21" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/check4_tester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/api/api.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/api/database.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/api/jwt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/api/profile-spec.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/api/profile.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/profiles/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/api/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/database.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check2_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/check2_tester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/posts/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/api/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/api/database.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

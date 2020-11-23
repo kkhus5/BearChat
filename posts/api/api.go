@@ -1,25 +1,26 @@
 package api
 
 import (
+	"database/sql"
 	"encoding/json"
 	"errors"
-	"log"
-	"net/http"
-	"time"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
-	"database/sql"
+	"github.com/zmb3/spotify"
+	"log"
+	"net/http"
 	"strconv"
+	"time"
 )
 
 
 func RegisterRoutes(router *mux.Router) error {
 	// Why don't we put options here? Check main.go :)
 
-	router.HandleFunc("/api/posts/{startIndex}", getFeed).Methods(/* YOUR CODE HERE */) 
-	router.HandleFunc("/api/posts/{uuid}/{startIndex}", getPosts).Methods(/* YOUR CODE HERE */)
-	router.HandleFunc("/api/posts/create", createPost).Methods(/* YOUR CODE HERE */)
-	router.HandleFunc("/api/posts/delete/{postID}", deletePost).Methods(/* YOUR CODE HERE */)
+	router.HandleFunc("/api/posts/{startIndex}", getFeed).Methods(http.MethodGet, http.MethodOptions)
+	router.HandleFunc("/api/posts/{uuid}/{startIndex}", getPosts).Methods(http.MethodGet, http.MethodOptions)
+	router.HandleFunc("/api/posts/create", createPost).Methods(http.MethodPost, http.MethodOptions)
+	router.HandleFunc("/api/posts/delete/{postID}", deletePost).Methods(http.MethodDelete, http.MethodOptions)
 
 	return nil
 }
@@ -43,7 +44,7 @@ func getUUID (w http.ResponseWriter, r *http.Request) (uuid string) {
 
 func getPosts(w http.ResponseWriter, r *http.Request) {
 
-	// Load the uuid and startIndex from the url paramater into their own variables
+	// Load the uuid and startIndex from the url parameter into their own variables
 	// Look at mux.Vars() ... -> https://godoc.org/github.com/gorilla/mux#Vars
 	// make sure to use "strconv" to convert the startIndex to an integer!
 	// YOUR CODE HERE
@@ -116,12 +117,23 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 	// Obtain the userID from the JSON Web Token
 	// See getUUID(...)
 	// YOUR CODE HERE
+	userID := getUUID(w, r)
 
 	// Create a Post object and then Decode the JSON Body (which has the structure of a Post) into that object
 	// YOUR CODE HERE
+	post := Post{}
+	err := json.NewDecoder(r.Body).Decode(&post)
+
+	//Check for errors in creating a post
+	if err != nil {
+		http.Error(w, errors.New("issue creating post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	// Use the uuid library to generate a post ID
 	// Hint: https://godoc.org/github.com/google/uuid#New
+	postID := uuid.New()
 
 	//Load our location in PST
 	pst, err := time.LoadLocation("America/Los_Angeles")
@@ -132,64 +144,101 @@ func createPost(w http.ResponseWriter, r *http.Request) {
 
 	// Insert the post into the database
 	// Look at /db-server/initdb.sql for a better understanding of what you need to insert
-	result , err = DB.Exec("YOUR CODE HERE", /* YOUR CODE HERE */, /* YOUR CODE HERE */, /* YOUR CODE HERE */, /* YOUR CODE HERE */)
+	result , err := DB.Exec("INSERT INTO posts (content, postID, authorID, postTime) VALUES (?, ?, ?, ?);", post.PostBody, postID, userID, currPST)
 	
 	// Check errors with executing the query
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("issue saving post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	// Make sure at least one row was affected, otherwise return an InternalServerError
 	// You did something very similar in Checkpoint 2
 	// YOUR CODE HERE
+	affect, err := result.RowsAffected()
+	if affect == 0 {
+		http.Error(w, errors.New("issue saving post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	// What kind of HTTP header should we return since we created something?
 	// Check your signup from Checkpoint 2!
 	// YOUR CODE HERE
-
+	w.WriteHeader(http.StatusCreated)
 	return
 }
 
 func deletePost(w http.ResponseWriter, r *http.Request) {
-
 	// Get the postID to delete
 	// Look at mux.Vars() ... -> https://godoc.org/github.com/gorilla/mux#Vars
 	// YOUR CODE HERE
-
+	vars := mux.Vars(r)
+	postID := vars["postID"]
 
 	// Get the uuid from the access token, see getUUID(...)
 	// YOUR CODE HERE
+	userID := getUUID(w, r)
 
 	var exists bool
 	//check if post exists
-	err := DB.QueryRow("YOUR CODE HERE", /* YOUR CODE HERE */).Scan(/* YOUR CODE HERE */)
+	err := DB.QueryRow("SELECT EXISTS(SELECT * FROM posts WHERE postID = ?);", postID).Scan(&exists)
 
 	// Check for errors in executing the query
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("issue finding post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	// Check if the post actually exists, otherwise return an http.StatusNotFound
 	// YOUR CODE HERE
+	if !exists {
+		http.Error(w, errors.New("issue finding post").Error(), http.StatusNotFound)
+		log.Print(err.Error())
+		return
+	}
 
 	// Get the authorID of the post with the specified postID
 	var authorID string
-	err = DB.QueryRow("YOUR CODE HERE", /* YOUR CODE HERE */).Scan(/* YOUR CODE HERE */)
+	err = DB.QueryRow("SELECT authorID FROM posts WHERE postID = ?;", postID).Scan(&authorID)
 	
 	// Check for errors in executing the query
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("issue finding author of post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	// Check if the uuid from the access token is the same as the authorID from the query
 	// If not, return http.StatusUnauthorized
 	// YOUR CODE HERE
+	if userID != authorID {
+		http.Error(w, errors.New("cannot delete a post that is not yours").Error(), http.StatusUnauthorized)
+		log.Print(err.Error())
+		return
+	}
 
 	// Delete the post since by now we're authorized to do so
-	_, err = DB.Exec("YOUR CODE HERE", /* YOUR CODE HERE */)
+	_, err = DB.Exec("DELETE FROM posts WHERE postID = ?;", postID)
 	
 	// Check for errors in executing the query
 	// YOUR CODE HERE
+	if err != nil {
+		http.Error(w, errors.New("issue deleting post").Error(), http.StatusInternalServerError)
+		log.Print(err.Error())
+		return
+	}
 
 	return
 }
 
 func getFeed(w http.ResponseWriter, r *http.Request) {
-	// get the start index from the url paramaters
+	// get the start index from the url parameters
 	// based on the previous functions, you should be familiar with how to do so
 	// YOUR CODE HERE
 
@@ -220,7 +269,7 @@ func getFeed(w http.ResponseWriter, r *http.Request) {
 	)
 
 	// Put all the posts into an array of Max Size 25 and return all the filled spots
-	// Almost exaclty like getPosts()
+	// Almost exactly like getPosts()
 	// YOUR CODE HERE
 
   return
