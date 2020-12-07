@@ -26,10 +26,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check2_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/check2_tester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/api/api.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,5 +130,9 @@
       <screen x="0" y="23" width="1440" height="833" />
     </state>
     <state x="103" y="277" width="869" height="811" key="dock-window-1/0.23.1440.833@0.23.1440.833" timestamp="1607314875871" />
+    <state x="588" y="357" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1607331533251">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state x="588" y="357" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1440.833@0.23.1440.833" timestamp="1607331533251" />
   </component>
 </project>
