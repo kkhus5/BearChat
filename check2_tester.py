@@ -26,7 +26,7 @@ def main():
 
 def test_signup():
     url = "http://localhost:80/api/auth/signup"
-    payload = {'username': 'kkhus5', 'email': 'kkhus5@berkeley.edu', 'password': 'test_password'}
+    payload = {'username': 'test_user', 'email': 'test_email@berkeley.edu', 'password': 'test_password'}
     response = requests.post(url, json=payload)
     if response.status_code != 201:
         fail('expected status code 201 but was {}'.format(response.status_code))

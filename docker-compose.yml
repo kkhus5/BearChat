@@ -57,7 +57,7 @@ services:
             bearchat:
                 ipv4_address:
                     172.28.1.4
-        depends_on: 
+        depends_on:
         - db-server
 
         expose:
