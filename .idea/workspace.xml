@@ -26,10 +26,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/check2_tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/check2_tester.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/profiles/api/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/api/jwt.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +64,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RunManager">
     <configuration name="db-server/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true">
@@ -124,10 +124,10 @@
       <screen x="0" y="23" width="1440" height="833" />
     </state>
     <state x="717" y="248" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.833@0.23.1440.833" timestamp="1604309477245" />
-    <state x="203" y="71" key="SettingsEditor" timestamp="1604311362108">
+    <state x="203" y="71" key="SettingsEditor" timestamp="1607323681908">
       <screen x="0" y="23" width="1440" height="833" />
     </state>
-    <state x="203" y="71" key="SettingsEditor/0.23.1440.833@0.23.1440.833" timestamp="1604311362108" />
+    <state x="203" y="71" key="SettingsEditor/0.23.1440.833@0.23.1440.833" timestamp="1607323681908" />
     <state x="103" y="277" width="869" height="811" key="dock-window-1" timestamp="1607314875871">
       <screen x="0" y="23" width="1440" height="833" />
     </state>

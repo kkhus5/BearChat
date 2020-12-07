@@ -237,7 +237,6 @@ func deletePost(w http.ResponseWriter, r *http.Request) {
 	// YOUR CODE HERE
 	if userID != authorID {
 		http.Error(w, errors.New("cannot delete a post that is not yours").Error(), http.StatusUnauthorized)
-		log.Print(err.Error())
 		return
 	}
 
