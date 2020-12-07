@@ -1,11 +1,11 @@
 package api
 
 import (
-	"log"
-	"net/http"
 	"encoding/json"
 	"errors"
 	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 )
 
 func RegisterRoutes(router *mux.Router) error {
