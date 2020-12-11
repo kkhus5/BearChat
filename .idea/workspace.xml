@@ -27,12 +27,7 @@
     <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/friends/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/friends/api/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/api/jwt.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/friends/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/common/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/common/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/main.go" afterDir="false" />
     </list>
