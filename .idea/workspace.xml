@@ -24,7 +24,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="" />
+    <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friends/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friends/api/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/api/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/friends/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/friends/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/common/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/common/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/main.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +69,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RunManager">
@@ -118,6 +130,22 @@
       <screen x="0" y="23" width="1440" height="833" />
     </state>
     <state x="717" y="248" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.833@0.23.1440.833" timestamp="1604309477245" />
+    <state width="1082" height="215" key="GridCell.Tab.0.bottom" timestamp="1607683338113">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state width="1082" height="215" key="GridCell.Tab.0.bottom/0.23.1440.833@0.23.1440.833" timestamp="1607683338113" />
+    <state width="1082" height="215" key="GridCell.Tab.0.center" timestamp="1607683338111">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state width="1082" height="215" key="GridCell.Tab.0.center/0.23.1440.833@0.23.1440.833" timestamp="1607683338111" />
+    <state width="1082" height="215" key="GridCell.Tab.0.left" timestamp="1607683338111">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state width="1082" height="215" key="GridCell.Tab.0.left/0.23.1440.833@0.23.1440.833" timestamp="1607683338111" />
+    <state width="1082" height="215" key="GridCell.Tab.0.right" timestamp="1607683338112">
+      <screen x="0" y="23" width="1440" height="833" />
+    </state>
+    <state width="1082" height="215" key="GridCell.Tab.0.right/0.23.1440.833@0.23.1440.833" timestamp="1607683338112" />
     <state x="203" y="71" key="SettingsEditor" timestamp="1607323681908">
       <screen x="0" y="23" width="1440" height="833" />
     </state>
