@@ -37,7 +37,7 @@ func CORS(next http.Handler) http.Handler {
 
 		// Set headers
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		w.Header().Set("Access-Control-Allow-Origin", "54.90.171.240:8182")
+		w.Header().Set("Access-Control-Allow-Origin", "54.90.171.240:3000")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 
