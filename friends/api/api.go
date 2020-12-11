@@ -1,15 +1,15 @@
 package api
 
 import (
-	"net/http"
-	"github.com/gorilla/mux"
-	"log"
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
 )
 
-const NeptuneURL = "https://<your_neptune_writer_endpoint>:8182/gremlin"
+const NeptuneURL = "https://database-1.cluster-cm8mwlzqkbxy.us-east-1.neptune.amazonaws.com:8182/gremlin"
 
 func RegisterRoutes(router *mux.Router) error {
 	router.HandleFunc("/api/friends/{uuid}", areFriends).Methods(http.MethodGet, http.MethodOptions)
@@ -150,9 +150,9 @@ func addUser (w http.ResponseWriter, r *http.Request) {
 // }
 
 func makeNeptuneRequest(gremlinQuery string) (map[string]interface{}, error) {
-	req_body := make(map[string]string)
-	req_body["gremlin"] = gremlinQuery
-	jsonValue, _ := json.Marshal(req_body)
+	reqBody := make(map[string]string)
+	reqBody["gremlin"] = gremlinQuery
+	jsonValue, _ := json.Marshal(reqBody)
 	resp, err := http.Post(NeptuneURL, "application/json", bytes.NewBuffer(jsonValue))
 	if err != nil {
 		return nil, err
