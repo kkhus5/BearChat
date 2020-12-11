@@ -42,10 +42,6 @@ func RegisterRoutes(router *mux.Router) error {
 }
 
 func signup(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "content-type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	if (*r).Method == "OPTIONS" {
 		return
@@ -213,10 +209,6 @@ func signup(w http.ResponseWriter, r *http.Request) {
 }
 
 func signin(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	if (*r).Method == "OPTIONS" {
 		return
@@ -324,9 +316,6 @@ func signin(w http.ResponseWriter, r *http.Request) {
 }
 
 func logout(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 
 	if (*r).Method == "OPTIONS" {
 		return
@@ -342,10 +331,6 @@ func logout(w http.ResponseWriter, r *http.Request) {
 }
 
 func verify(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	if (*r).Method == "OPTIONS" {
 		return
@@ -380,11 +365,6 @@ func verify(w http.ResponseWriter, r *http.Request) {
 
 
 func sendReset(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
-
 	if (*r).Method == "OPTIONS" {
 		return
 	}
@@ -437,10 +417,6 @@ func sendReset(w http.ResponseWriter, r *http.Request) {
 }
 
 func resetPassword(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "localhost:3000")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 	if (*r).Method == "OPTIONS" {
 		return

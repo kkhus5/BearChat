@@ -24,7 +24,51 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="" />
+    <list default="true" id="a9aafce4-29ec-4ed5-9273-e110e436ff2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/friends/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friends/api/api.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friends/api/jwt.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friends/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friends/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/friends/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Layout.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Navbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/Layout/Navbar.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/common/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/LogOut.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/PostFeed.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Signin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Signup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/serviceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/setupTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/api/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/posts/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/posts/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/profiles/main.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
