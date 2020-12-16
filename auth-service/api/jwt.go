@@ -41,7 +41,7 @@ func getClaims(tokenString string) (claims AuthClaims, Error error) {
 		return AuthClaims{}, err
 	}
 	if !token.Valid {
-		return AuthClaims{}, errors.New("The given token is not valid")
+		return AuthClaims{}, errors.New("the given token is not valid")
 	}
 	return claims, nil
 }

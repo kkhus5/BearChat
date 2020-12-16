@@ -60,9 +60,6 @@ services:
           depends_on:
           - db-server
 
-          expose:
-              - '80'
-
     friends-service:
           build: ./friends
           container_name: friends-service
