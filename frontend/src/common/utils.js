@@ -42,5 +42,5 @@ export function request(method, url, qs, body) {
   });
 }
 
-export const HOST = "54.221.150.135";
+export const HOST = "54.226.6.116";
 
